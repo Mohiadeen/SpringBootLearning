@@ -1,0 +1,68 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()	
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	
+	// Swagger integration, Mandatatory to mention version number 
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+			
+	// Web app and rest web app 
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	// Hateos 
+	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+	
+	//Validation 
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	
+	//Jpa
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.h2database:h2'
+	
+	// Any changes that is made is refresshed automatically 
+	//This wont refresh the class path, but just reloads only the application bean .. This way it takes less time to refresh/reload 
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+		
+	//Embedded server 
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	
+	//To respond in Json to xml format 
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+	
+    
+    //Actuator for adding validation 
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    
+    // To view Services provided by actuator in a browser     
+	implementation 'org.springframework.data:spring-data-rest-hal-browser'
+	
+	//Security 
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	
+	// Here as dummy 
+	//implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	
+	//Getter and setter plugin 
+	compileOnly 'org.projectlombok:lombok:1.18.16'
+	
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
